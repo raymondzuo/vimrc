@@ -65,6 +65,10 @@ Plugin 'KabbAmine/zeavim.vim'
 Plugin 'xuqix/h2cppx'
 Plugin 'vim-scripts/Conque-GDB'
 
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -127,17 +131,23 @@ set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(�
 let g:ycm_collect_identifiers_from_tags_files=1 " 开启 YCM 基于标签引擎  
 let g:ycm_min_num_of_chars_for_completion=1 " 从第2个键入字符就开始罗列匹配项  
 let g:ycm_cache_omnifunc=0  " 禁止缓存匹配项,每次都重新生成匹配项  
-let g:ycm_confirm_extra_conf=1
+let g:ycm_confirm_extra_conf=1 "每次都询问是否使用默认语义配置文件
 
 let g:ycm_error_symbol = 'X'  
 let g:ycm_warning_symbol = '>*' 
 
-let g:ycm_autoclose_preview_window_after_completion=0
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_max_num_candidates = 12
+hi PmenuSel ctermfg=7 ctermbg=4 guibg=#555555 guifg=#ffffff
+
 
 nnoremap <F12> :YcmCompleter GoToDeclaration<CR>  
 nnoremap <S-F12> :YcmCompleter GoToDefinition<CR>  
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>  
 nmap <F4> :YcmDiags<CR> 
+
+imap <C-L> <esc>a<Plug>snipMateNextOrTrigger
+smap <C-L> <Plug>snipMateNextOrTrigger
 
 "Nerd Tree config
 autocmd StdinReadPre * let s:std_in=1
